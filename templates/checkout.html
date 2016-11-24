@@ -1,0 +1,114 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{url_for('index')}}">Inicio</a></li>
+					<li class="active">Carrito</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-ckeckout-->
+	<div class="ckeckout">
+		<div class="container">
+			
+
+			<div class="ckeckout-top">
+			<div class=" cart-items heading">
+			 <h3>Carrito de compras</h3>
+				<script>$(document).ready(function(c) {
+					$('.close1').on('click', function(c){
+						$('.cart-header').fadeOut('slow', function(c){
+							$('.cart-header').remove();
+						});
+						});	  
+					});
+			   </script>
+			<script>$(document).ready(function(c) {
+					$('.close2').on('click', function(c){
+						$('.cart-header1').fadeOut('slow', function(c){
+							$('.cart-header1').remove();
+						});
+						});	  
+					});
+			   </script>
+			   <script>$(document).ready(function(c) {
+					$('.close3').on('click', function(c){
+						$('.cart-header2').fadeOut('slow', function(c){
+							$('.cart-header2').remove();
+						});
+						});	  
+					});
+			   </script>
+				
+				<div class="in-check" >
+					<ul class="unit">
+						
+						<li><span>Producto</span></li>
+						<li><span>Nombre del Producto</span></li>		
+						<li><span>Precio de la Unidad</span></li>
+						<li><span>Cantidad</span></li>
+						<li><span>Total</span> </li>
+						<div class="clearfix"> </div>
+					</ul>
+					
+					{% if cart is not defined %}
+						<ul class="cart-header">
+							<p align="center"> No se han escogido articulos para el carrito</p>
+							<!--<div class="close1"> </div>-->
+								<li class="ring-in"></li>
+							<div class="clearfix"> </div>
+						</ul>
+					{% else %}
+						{% for product in cart.items() %}
+							<ul class="cart-header">
+								<a href="{{ url_for('delete_car', product = product[0]) }}"><div class="close1"> </div></a>
+									<li class="ring-in">
+									</li>
+									<li><span>{{ product[1].name }}</span></li>
+									<li><span>$ {{ product[1].price }}</span></li>
+									<li><span>{{ product[1].amount }}</span></li>
+									<li><span>  $ {{ product[1].price|int * product[1].amount|int }}  </span></li>
+									
+								<div class="clearfix"> </div>
+							</ul>
+						{% endfor %}
+					{% endif %}
+				</div>
+				<br><br><br><br>
+				
+				
+				{% if cart is defined %}
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					  <!-- Identify your business so that you can collect the payments. -->
+					  <input type="hidden" name="business" value="diego.zr@live.com.mx">
+					  <!-- Specify a Buy Now button. -->
+					  <input type="hidden" name="cmd" value="_xclick">
+					  {% set amount = 0 %}
+					  {% for product in cart.items() %}
+						<!-- Specify details about the item that buyers will purchase. -->
+						{% set amount = amount + (product[1].price|int * product[1].amount|int) %}
+						  <input type="hidden" name="item_name" value="Carrito de zapatos">
+						  <input type="hidden" name="amount" value="{{ amount }} ">
+						  <input type="hidden" name="currency_code" value="MXN">
+					  {% endfor %}
+					  <!-- Display the payment button. -->
+					  <input type="image" name="submit" border="0"
+					  src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_paynow_cc_144x47.png"
+					  alt="Buy Now"
+					  align="right">
+					  <img alt="" border="0" width="1" height="1"
+					  src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+					</form>
+				{% endif %}
+			</div>  
+		 </div>
+		</div>
+	</div>
+
+
+{% endblock %}	

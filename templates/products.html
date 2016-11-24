@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+					<li >Categorias</li>
+					<li class="active">{{ category }}</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-product--> 
+	<div class="product">
+		<div class="container">
+			<div class="product-main">
+				<div class="col-md-12 p-left">
+				<div class="product-one">
+				{% if info %}
+					{% for product in info.items() %}
+						
+						<div class="col-md-4 product-left single-left"> 
+							<div class="p-one simpleCart_shelfItem">
+								<a href="{{ url_for('single', pid = product[0] ) }}">
+										<img src="{{ url_for('static', filename='uploads/'+ product[1].image) }}" alt="" />
+										<div class="mask mask1">
+											<span>Vista Rápida</span>
+										</div>
+									</a>
+								<h4>{{ product[1].pname }}</h4>
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price">${{ product[1].price }}</span></a></p>
+							</div>
+						</div>
+					
+					{% endfor %}
+				
+				{% endif %}	
+				
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!--end-product-->
+{% endblock %}	

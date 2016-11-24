@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<!--end-banner-bottom--> 
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+					<li class="active">Agregar Producto</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-account-->
+	<div class="account">
+		<div class="container"> 
+			<div class="account-bottom">
+				<div class="col-md-6 col-md-offset-3 account-left">
+					{% if success %}
+                    	<div class="alert alert-success" role="alert"> {{ success }}</div>
+                	{% endif %}
+                	{% if message %}
+                    	<div class="alert alert-danger" role="alert"> {{ message }}</div>
+               		{% endif %}
+					<form method = "POST" action = "/add_stock" enctype=multipart/form-data>
+					{{ form_addstock.hidden_tag() }}
+					<div class="account-top heading">
+						<h3>NUEVO PRODUCTO</h3>
+					</div>
+					
+					<div class="form-group address">
+	                    <!--{{ form_addstock.product_name.label }}-->
+	                    {% if form_addstock.product_name.errors %}
+	                        {% for error in form_addstock.product_name.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_addstock.product_name(placeholder='Nombre del Producto') }}
+                	</div>
+                  
+                	<div class="form-group address">
+	                    <!--{{ form_addstock.price.label }}-->
+	                    {% if form_addstock.price.errors %}
+	                        {% for error in form_addstock.price.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_addstock.price(placeholder='Precio') }}
+                	</div>
+                	
+                	<div class="form-group address">
+	                    <!--{{ form_addstock.category.label }}-->
+	                    {% if form_addstock.category.errors %}
+	                        {% for error in form_addstock.category.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    {% if message %}
+	                        <p class="error-message">{{ message }}</p>
+	                    {% endif %}
+	                    
+	                    {{ form_addstock.category(style="width:100%;height:42px;") }}
+                	</div>
+                        
+					<div class="form-group address">
+	                	<!--{{ form_addstock.description.label }}-->
+	                    {% if form_addstock.description.errors %}
+	                        {% for error in form_addstock.description.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_addstock.description(placeholder='Descripción') }}
+                	</div>
+                  
+					<div class="form-group address">
+	                	<!--{{ form_addstock.stock.label }}-->
+	                    {% if form_addstock.stock.errors %}
+	                        {% for error in form_addstock.stock.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_addstock.stock(placeholder='Stock') }}
+                	</div>
+                	
+                	<div class="form-group address">
+                		 <input type="file" name="file">
+                	</div>
+                <!--	form_addstock.img(class="button button-block", value="Agregar imagenes") -->
+                	
+					{{ form_addstock.submit(class="button button-block", value="Agregar Producto") }}
+					</form>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+		
+{% endblock %}	

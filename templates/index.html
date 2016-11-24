@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<!--start-shoes--> 
+	<div class="shoes"> 
+		<div class="container"> 
+			<div class="product-one">
+				{% if info %}
+					{% for product in info.items() %}
+						<div class="col-md-3 product-left"> 
+							<div class="p-one simpleCart_shelfItem">							
+								<a href="{{ url_for('single', pid = product[0] ) }}">
+									<img src="{{ url_for('static', filename='uploads/'+ product[1].image) }}" alt="" />
+									<div class="mask">
+										<span>Vista Rápida</span>
+									</div>
+								</a>
+								<h4>{{ product[1].pname }}</h4>
+								<p><a class="item_add" href="#"><i></i> <span class=" item_price"> $ {{  product[1].price }}</span></a></p>
+						
+							</div>
+						</div>
+					{% endfor %}
+				
+				{% endif %}	
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}	

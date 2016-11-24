@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<!--end-banner-bottom--> 
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+					<li class="active">Panel de Control</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-account-->
+	<div class="account">
+		<div class="container"> 
+			<div class="account-bottom">
+				<div class="col-md-6 col-md-offset-3 account-left">
+				    
+					<div class="list-group">
+						{% if info %}
+							{% for product in info.items() %}
+							    <div class="list-group-item">
+							        <h4 class="list-group-item-heading">{{ product[1].pname }} <a href="{{ url_for('editStock', pid = product[0]) }}"><span class="badge badge-important pull-right">{{ product[1].stock }}</span></a></h4>
+							        <p class="list-group-item-text">{{ product[1].descrip }} <a href="{{ url_for('delete_product', pid = product[0]) }}"><span class="glyphicon glyphicon glyphicon-remove pull-right text-danger" aria-hidden="true"></span></a></p> 
+							    </div>
+							{% endfor %}
+						{% endif %}	
+					</div>
+					
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+		
+{% endblock %}

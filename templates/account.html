@@ -1,0 +1,151 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<!--end-banner-bottom--> 
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+					<li class="active">Account</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-account-->
+	<div class="account">
+		<div class="container"> 
+			<div class="account-bottom">
+				<div class="col-md-6 account-left">
+					<form method = "POST" action = "/signup">
+					{{ form_signup.hidden_tag() }}
+					<div class="account-top heading">
+						<h3>NUEVOS CLIENTES</h3>
+					</div>
+					
+					<div class="form-group address">
+	                    <!--{{ form_signup.first_name.label }}-->
+	                    {% if form_signup.first_name.errors %}
+	                        {% for error in form_signup.first_name.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_signup.first_name(placeholder='Nombre(s)') }}
+                	</div>
+                  
+                	<div class="form-group address">
+	                    <!--{{ form_signup.last_name.label }}-->
+	                    {% if form_signup.last_name.errors %}
+	                        {% for error in form_signup.last_name.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_signup.last_name(placeholder='Apellidos') }}
+                	</div>
+                	
+                	<div class="address">
+	                    <!--{{ form_signup.email.label }}-->
+	                    {% if form_signup.email.errors %}
+	                        {% for error in form_signup.email.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    {% if message %}
+	                        <p class="error-message">{{ message }}</p>
+	                    {% endif %}
+	                    
+	                    {{ form_signup.email(placeholder='Correo electrónico') }}
+                	</div>
+                	
+                	<div class ="address">
+                        <!--{{ form_signup.password.label }}-->
+                        {% if form_signup.password.errors %}
+                            {% for error in form_signup.password.errors %}
+                                <p class="error-message">{{ error }}</p>
+                        	{% endfor %}
+                        {% endif %}
+                        {{ form_signup.password(placeholder="Contraseña") }}
+                    </div>
+                    
+                    <div class ="address">
+                        <!--{{ form_signup.confirm.label }}-->
+                        {% if form_signup.confirm.errors %}
+                            {% for error in form_signup.confirm.errors %}
+                                <p class="error-message">{{ error }}</p>
+                        	{% endfor %}
+                        {% endif %}
+                        {{ form_signup.confirm(placeholder="Repita la contraseña") }}
+                    </div>
+                        
+					<div class="form-group address">
+	                	<!--{{ form_signup.address.label }}-->
+	                    {% if form_signup.address.errors %}
+	                        {% for error in form_signup.address.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_signup.address(placeholder='Direccion') }}
+                	</div>
+                  
+					<div class="form-group address">
+	                	<!--{{ form_signup.cp.label }}-->
+	                    {% if form_signup.cp.errors %}
+	                        {% for error in form_signup.cp.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_signup.cp(placeholder='Codigo Postal, Length = 5 ') }}
+                	</div>
+					{{ form_signup.submit(class="button button-block address", value="Registrarme") }}
+					</form>
+				</div>
+				
+				<div class="col-md-6 account-left">
+					<form method = "POST" action = "/login">
+					{{ form_login.hidden_tag() }}
+					<div class="account-top heading">
+						<h3>CLIENTES REGISTRADOS</h3>
+					</div>
+
+                	<div class="address">
+	                    <!--{{ form_login.email.label }}-->
+	                    {% if form_login.email.errors %}
+	                        {% for error in form_login.email.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    {% if message %}
+	                        <p class="error-message">{{ message }}</p>
+	                    {% endif %}
+	                    
+	                    {{ form_login.email(placeholder='Correo electrónico') }}
+                	</div>
+                  
+                	<div class="address">
+	                    <!--{{ form_login.password.label }}-->
+	                    {% if form_login.password.errors %}
+	                        {% for error in form_login.password.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    {{ form_login.password(placeholder="Contraseña") }}
+                	</div>
+                  
+                	{{ form_login.submit(class="button button-block address") }}
+                	
+                	<a class="forgot" href="#">¿Olvidaste tu contraseña?</a>
+				</div>
+				
+				</form>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+		
+{% endblock %}	

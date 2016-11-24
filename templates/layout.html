@@ -1,0 +1,123 @@
+<!--A Design by W3layouts 
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LSCM</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="{{ url_for('static', filename = 'js/jquery-1.11.0.min.js') }}"></script>
+	<!-- Custom Theme files -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='LogoPIX.ico') }}">
+	<!--theme-style-->
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" media="all" />	
+	<!--//theme-style-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!--fonts-->
+	<link href='https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,300,400,500,700,800,900,100italic,300italic,400italic,500italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+	<!--//fonts-->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/move-top.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='js/easing.js') }}"></script>
+	<script src="{{url_for('static', filename='js/simpleCart.min.js')}}"> </script>
+	<link href="{{ url_for('static', filename='css/memenu.css') }}" rel="stylesheet" type="text/css" media="all" />
+	<script type="text/javascript" src="{{ url_for('static', filename='js/memenu.js') }}"></script>
+	<script>$(document).ready(function(){$(".memenu").memenu();});</script>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body> 
+	<!--top-header-->
+	<div class="top-header">
+	<div class="container">
+		<div class="top-header-main">
+			<div class="col-md-4 top-header-left">
+
+			</div>
+			<div class="col-md-4 top-header-middle">
+				<a href="{{ url_for('index') }}"><img src=" {{ url_for('static', filename='images/LogoLSCM.png') }}"  alt="" /></a>
+			</div>
+			<div class="col-md-4 top-header-right">
+				<div class="cart box_1">
+						<a href=" {{ url_for('checkout') }}">
+							<i class = "glyphicon glyphicon-shopping-cart"></i>
+						</a>&nbsp;&nbsp;
+					<div class="clearfix"> </div>
+				</div>
+				<div class="cart box_1 dropdown" style="padding-right:30px; color:8C2830;">
+					<a  class="dropdown-toggle" type="button" data-toggle="dropdown"><i class = "glyphicon glyphicon-user"></i></a>
+				    <ul class="dropdown-menu">
+				    	{% if login == 1 %}
+				      		<li><a href=" {{ url_for('profile') }} ">{{ session["fname"] }}</a></li>
+				      		<li><a href=" {{ url_for('logout') }}">Logout</a></li>
+				      		
+							{% if admin == -1%}
+					      		<li><a href=" {{ url_for('manage_stock') }}">Editar inventario</a></li>
+					      		<li><a href=" {{ url_for('product') }}">Agregar inventario</a></li>
+					      	{% endif %}
+				      	{% else %}
+
+							<li><a href=" {{ url_for('account') }} ">Entrar</a></li>
+				      		
+				      	{% endif %}
+				    </ul>	  
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<!--top-header-->
+	<!--bottom-header-->
+	<div class="header-bottom">
+		<div class="container">
+			<div class="top-nav">
+				<ul class="memenu skyblue" >
+					<li class="active" style="float: left"><a href="{{ url_for('index') }}">Inicio</a></li>
+					<li class="grid dropdown" style="float: left">
+						<a class="dropdown-toggle" type="button" data-toggle="dropdown">categorias</a>
+						<ul class="dropdown-menu" style="font-size:16px;">
+							<li><a href="{{ url_for('products', category = 'Hombre') }}">Hombre</a></li>
+							<li><a href="{{ url_for('products', category = 'Mujer') }}">Mujer</a></li>
+							<li><a href="{{ url_for('products', category = 'Niños') }}">Niños</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+
+
+{% block content %}
+{% endblock %}
+
+
+<div class="container">
+	<div class="wrapper">
+		<p class="footer-class" style="padding:40px;">
+			Tienda LSCM desarrollada por <b>equipo 3</b>
+		</p>
+	</div>
+</div>
+
+<!--
+	<div class="footer-text">
+		<div class="container">
+			<div class="footer-main">
+				<p class="footer-class"> </p>
+			</div>
+		</div>
+	</div>
+	-->
+	<!--end-footer-text-->	
+</body>
+</html>

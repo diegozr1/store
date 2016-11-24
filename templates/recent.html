@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Inicio</a></li>
+					<li class="active">Recent</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<div class="ckeckout">
+		<div class="container">
+			<div class="ckeckout-top">
+			<div class=" cart-items heading">
+			<h3>Compras recientes</h3>
+			<div class="in-check" >
+				<ul class="unit">
+					
+					<li><span>Item</span></li>
+					<li><span>Nombre del producto</span></li>		
+					<li><span>Precio de la unidad</span></li>
+					<li><span>cantidad vendida</span></li>
+					<li> </li>
+					<div class="clearfix"> </div>
+				</ul>
+				<ul class="cart-header">
+					
+					<li class="ring-in"><a href="single.html" ><img src="images/s-1.jpg" class="img-responsive" alt=""></a>
+					</li>
+					<li><span>Woo Dress</span></li>
+					<li><span>$ 290.00</span></li>
+					<li><span>10</span></li>
+						
+					<div class="clearfix"> </div>
+				</ul>
+				<ul class=" cart-header1">
+					
+					<li class="ring-in"><a href="single.html" ><img src="images/s-2.jpg" class="img-responsive" alt=""></a>
+					</li>
+					<li><span>Elliot Shoes</span></li>
+					<li><span>$ 300.00</span></li>
+					<li><span>11</span></li>
+					
+					<div class="clearfix"> </div>
+				</ul>
+				<ul class="cart-header2">
+				
+					<li class="ring-in"><a href="single.html" ><img src="images/s-4.jpg" class="img-responsive" alt=""></a>
+					</li>
+					<li><span>Woo Dress</span></li>
+					<li><span>$ 360.00</span></li>
+					<li><span>0</span></li>
+				
+					<div class="clearfix"> </div>
+				</ul>
+			</div>
+			</div>  
+		 </div>
+		</div>
+	</div>
+{% endblock %}	

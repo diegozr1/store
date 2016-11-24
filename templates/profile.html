@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+<!-- {{ info["fname"] }} -->
+
+{% block content %}
+	<!--end-banner-bottom--> 
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+					<li class="active">Profile</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+{% if info %}
+	<!--start-account-->
+	<div class="account">
+		<div class="container"> 
+			<div class="account-bottom">
+				<div class="col-md-6 col-md-offset-3 account-left">
+					{% if success %}
+                    	<div class="alert alert-success" role="alert"> {{ success }}</div>
+                	{% endif %}
+                	{% if message %}
+                    	<div class="alert alert-danger" role="alert"> {{ message }}</div>
+               		{% endif %}
+					<form method = "POST" action = "/profile">
+					{{ form_profile.hidden_tag() }}
+					<div class="account-top heading">
+						<h3>Perfil</h3>
+					</div>
+					
+					<div class="form-group address">
+	                    <!--{{ form_profile.first_name.label }}-->
+	                    {% if form_profile.first_name.errors %}
+	                        {% for error in form_profile.first_name.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_profile.first_name(value= info["fname"]) }}
+                	</div>
+                  
+                	<div class="form-group address">
+	                    <!--{{ form_profile.last_name.label }}-->
+	                    {% if form_profile.last_name.errors %}
+	                        {% for error in form_profile.last_name.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_profile.last_name(value= info["lname"]) }}
+                	</div>
+                        
+					<div class="form-group address">
+	                	<!--{{ form_profile.address.label }}-->
+	                    {% if form_profile.address.errors %}
+	                        {% for error in form_profile.address.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_profile.address(value= info["address"]) }}
+                	</div>
+                  
+					<div class="form-group address">
+	                	<!--{{ form_profile.cp.label }}-->
+	                    {% if form_profile.cp.errors %}
+	                        {% for error in form_profile.cp.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_profile.cp(value= info["cp"]) }}
+                	</div>
+					{{ form_profile.submit(class="button button-block address", value="Editar Perfil") }}
+					</form>
+				</div>
+
+				
+				
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+		
+{% endif %}
+{% endblock %}	
+

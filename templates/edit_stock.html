@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<!--end-banner-bottom--> 
+	<!--start-breadcrumbs-->
+	<div class="breadcrumbs">
+		<div class="container">
+			<div class="breadcrumbs-main">
+				<ol class="breadcrumb">
+					<li><a href="{{ url_for('index') }}">Inicio</a></li>
+					<li class="active">Edita Producto</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+	<!--end-breadcrumbs-->
+	<!--start-account-->
+	<div class="account">
+		<div class="container"> 
+			<div class="account-bottom">
+				<div class="col-md-6 col-md-offset-3 account-left">
+					{% if success %}
+                    	<div class="alert alert-success" role="alert"> {{ success }}</div>
+                	{% endif %}
+                	{% if message %}
+                    	<div class="alert alert-danger" role="alert"> {{ message }}</div>
+               		{% endif %}
+					<form method = "POST" action = "{{ url_for('editStock', pid = pid) }}" enctype=multipart/form-data>
+						
+					{{ form_modify.hidden_tag() }}
+					<div class="account-top heading">
+						<h3>EDITAR PRODUCTO</h3>
+					</div>
+					
+					<div class="form-group address">
+	                    <!--{{ form_modify.product_name.label }}-->
+	                    {% if form_modify.product_name.errors %}
+	                        {% for error in form_modify.product_name.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_modify.product_name(value = info['pname']) }}
+                	</div>
+                  
+                	<div class="form-group address">
+	                    <!--{{ form_modify.price.label }}-->
+	                    {% if form_modify.price.errors %}
+	                        {% for error in form_modify.price.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_modify.price(value = info['price']) }}
+                	</div>
+                	
+                	<div class="form-group address">
+	                    <!--{{ form_modify.category.label }}-->
+	                    {% if form_modify.category.errors %}
+	                        {% for error in form_modify.category.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    {% if message %}
+	                        <p class="error-message">{{ message }}</p>
+	                    {% endif %}
+	                    
+	                    {{ form_modify.category(value = info['category'], style="width:100%;height:42px;") }}
+                	</div>
+                        
+					<div class="form-group address">
+	                	<!--{{ form_modify.description.label }}-->
+	                    {% if form_modify.description.errors %}
+	                        {% for error in form_modify.description.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_modify.description(value = info['descrip']) }}
+                	</div>
+                  
+					<div class="form-group address">
+	                	<!--{{ form_modify.stock.label }}-->
+	                    {% if form_modify.stock.errors %}
+	                        {% for error in form_modify.stock.errors %}
+	                            <p class="error-message">{{ error }}</p>
+	                        {% endfor %}
+	                    {% endif %}
+	                    
+	                    {{ form_modify.stock(value = info['stock']) }}
+                	</div>
+                	
+                	<div class="form-group address">
+                		 <input type="file" name="file">
+                	</div>
+                <!--	form_modify.img(class="button button-block", value="Agregar imagenes") -->
+                	
+					{{ form_modify.submit(class="button button-block", value="Modificar Producto") }}
+					</form>
+
+					</form>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+		</div>
+	</div>
+		
+{% endblock %}	
