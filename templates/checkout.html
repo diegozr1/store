@@ -67,8 +67,7 @@
 						{% for product in cart.items() %}
 							<ul class="cart-header">
 								<a href="{{ url_for('delete_car', product = product[0]) }}"><div class="close1"> </div></a>
-									<li class="ring-in">
-									</li>
+									<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 									<li><span>{{ product[1].name }}</span></li>
 									<li><span>$ {{ product[1].price }}</span></li>
 									<li><span>{{ product[1].amount }}</span></li>
